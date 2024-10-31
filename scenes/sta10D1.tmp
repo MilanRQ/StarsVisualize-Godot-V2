@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb0armmqxofan"]
+
+[ext_resource type="ArrayMesh" uid="uid://c36lf3bs3ipa3" path="res://assets/textures/uploads_files_4441022_yellow_star.obj" id="1_jdbxb"]
+[ext_resource type="Texture2D" uid="uid://qtxbl7c3l6i5" path="res://assets/textures/yellow-texture-background.jpg" id="2_jfyos"]
+[ext_resource type="Script" path="res://scenes/star.gd" id="3_pxpui"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_xo1of"]
+albedo_texture = ExtResource("2_jfyos")
+albedo_texture_force_srgb = true
+backlight = Color(0.732861, 0.588009, 0, 1)
+uv1_triplanar = true
+
+[node name="Star" type="MeshInstance3D"]
+transform = Transform3D(-0.443489, -0.149251, -0.883766, 0.318959, -0.947768, 0, -0.837605, -0.281885, 0.46793, -0.460869, -0.0696791, -0.230397)
+mesh = ExtResource("1_jdbxb")
+surface_material_override/0 = SubResource("ORMMaterial3D_xo1of")
+script = ExtResource("3_pxpui")

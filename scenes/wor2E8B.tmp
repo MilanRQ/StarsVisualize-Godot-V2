@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://8s703xmv8wp0"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_8krt3"]
+[ext_resource type="Texture2D" uid="uid://cfoedfccrhw8a" path="res://assets/textures/texture_07.png" id="1_w0343"]
+[ext_resource type="Texture2D" uid="uid://dces4j7mdv8vv" path="res://assets/textures/panorama6.jpg" id="2_3bjro"]
+[ext_resource type="PackedScene" uid="uid://cp6kko0ihyto4" path="res://scenes/character.tscn" id="3_pn7qq"]
+[ext_resource type="PackedScene" uid="uid://k7mjs0hbfbnq" path="res://scenes/StarV2.tscn" id="5_r8pbr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8bk3"]
+albedo_texture = ExtResource("1_w0343")
+uv1_triplanar = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_51urd"]
+panorama = ExtResource("2_3bjro")
+
+[sub_resource type="Sky" id="Sky_uvhfj"]
+sky_material = SubResource("PanoramaSkyMaterial_51urd")
+
+[sub_resource type="Environment" id="Environment_wfv0h"]
+background_mode = 2
+sky = SubResource("Sky_uvhfj")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0242672, 0.0167608, 0.00851488)
+script = ExtResource("1_8krt3")
+
+[node name="stage" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.504639, 0)
+use_collision = true
+size = Vector3(20, 0.990723, 20)
+material = SubResource("StandardMaterial3D_c8bk3")
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_wfv0h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("3_pn7qq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24134, 0)
+
+[node name="StarV2" parent="." instance=ExtResource("5_r8pbr")]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 2.65656, 8.29656, 8.26085)
+
+[node name="StarV3" parent="." instance=ExtResource("5_r8pbr")]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 4.15662, 8.87513, -15.4153)
+
+[node name="StarV4" parent="." instance=ExtResource("5_r8pbr")]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, -17.2362, 13.5198, -1.99578)

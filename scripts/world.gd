@@ -3,6 +3,7 @@ extends Node3D
 # Export variables for the star mesh and JSON file path
 @export var star_mesh: Mesh
 @export var json_file_path: String
+@export var scale_factor: float = 4.0
 
 # Maximum number of stars to create
 const MAX_STARS = 100
@@ -68,10 +69,11 @@ func create_star_material(star_data):
 		float(star_data["kG"]),
 		float(star_data["kB"])
 	)
-	material.albedo_color = color
+	
 	material.emission_enabled = true
 	material.emission = color
-	material.emission_energy = 1.0
+	material.emission_energy_multiplier = 10.0
+	
 	return material
 
 # Convert galactic coordinates to Cartesian coordinates
@@ -84,5 +86,5 @@ func convert_position(g_lat: float, g_long: float, dist: float) -> Vector3:
 	var x = dist * cos(g_lat_rad) * cos(g_long_rad)
 	var y = dist * cos(g_lat_rad) * sin(g_long_rad)
 	var z = dist * sin(g_lat_rad)
-
-	return Vector3(x, y, z)
+	# Apply scaling factor
+	return Vector3(x, y, z) * scale_factor

@@ -4,24 +4,25 @@
 [ext_resource type="PackedScene" uid="uid://cagp6yj2osyi4" path="res://scenes/pause_menu.tscn" id="3_af7ur"]
 [ext_resource type="PackedScene" uid="uid://cp6kko0ihyto4" path="res://scenes/character.tscn" id="3_pn7qq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_giq0w"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1yyx"]
+emission_enabled = true
 
-[sub_resource type="SphereMesh" id="SphereMesh_gjyoi"]
-material = SubResource("StandardMaterial3D_giq0w")
+[sub_resource type="SphereMesh" id="SphereMesh_4vdnb"]
+material = SubResource("StandardMaterial3D_a1yyx")
 
-[sub_resource type="Environment" id="Environment_tdrqa"]
+[sub_resource type="Environment" id="Environment_8kk1x"]
+ambient_light_source = 1
 glow_enabled = true
+glow_bloom = 0.34
+glow_blend_mode = 1
 
 [node name="World" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0242672, 0.0167608, 0.00851488)
 script = ExtResource("1_8krt3")
-star_mesh = SubResource("SphereMesh_gjyoi")
+star_mesh = SubResource("SphereMesh_4vdnb")
 json_file_path = "res://assets/Data/constellations.json"
 
-[node name="env" type="Node3D" parent="."]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
-environment = SubResource("Environment_tdrqa")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8kk1x")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("3_pn7qq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24134, 0)

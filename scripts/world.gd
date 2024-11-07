@@ -6,7 +6,7 @@ extends Node3D
 @export var scale_factor: float = 4.0
 
 # Maximum number of stars to create
-const MAX_STARS = 100
+const MAX_STARS = 1000
 
 # Called when the node enters the scene tree
 func _ready():
@@ -72,7 +72,7 @@ func create_star_material(star_data):
 	
 	material.emission_enabled = true
 	material.emission = color
-	material.emission_energy_multiplier = 10.0
+	material.emission_energy_multiplier = 2.0
 	
 	return material
 
